@@ -8,11 +8,16 @@ class Location {
   double get longitude => _longitude;
 
   Future<void> getCurrentLocation() async {
-    await Geolocator.requestPermission();
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.low,
-    );
-    _latitude = position.latitude;
-    _longitude = position.longitude;
+    try {
+      await Geolocator.requestPermission();
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low,
+      );
+      _latitude = position.latitude;
+      _longitude = position.longitude;
+    } catch(e) {
+      print(e);
+    }
+
   }
 }
