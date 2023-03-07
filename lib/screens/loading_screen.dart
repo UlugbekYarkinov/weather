@@ -16,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   late double latitude;
   late double longitude;
 
-  Future<void> getLocation() async {
+  Future<void> getLocationData() async {
     Location location = Location();
     await location.getCurrentLocation();
 
@@ -42,7 +42,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
   @override
