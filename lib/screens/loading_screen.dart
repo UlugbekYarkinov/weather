@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weather/screens/location_screen.dart';
 import 'package:weather/services/location.dart';
 import 'package:weather/services/networking.dart';
-
-const String apiKey = 'f95f68ab006afdd9a9ebe6fe320c00f0';
+import 'package:weather/utilities/constants.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -31,6 +31,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
 
     var weatherData = await networkHelper.getData();
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return const LocationScreen();
+    }));
 
     // int condition = weatherData['weather'][0]['id'];
     // double temperature = weatherData['main']['temp'];
