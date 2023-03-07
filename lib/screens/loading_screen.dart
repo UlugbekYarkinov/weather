@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:weather/services/location.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -28,7 +27,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
           'appid=f95f68ab006afdd9a9ebe6fe320c00f0'
     ));
     if(response.statusCode == 200) {
-      print(response.body);
+      String data = response.body;
+
+      int condition = jsonDecode(data)['weather'][0]['id'];
+      double temperature = jsonDecode(data)['main']['temp'];
+      String cityName = jsonDecode(data)['name'];
+
+      print(condition);
+      print(temperature);
+      print(cityName);
     } else {
       print(response.statusCode);
     }
