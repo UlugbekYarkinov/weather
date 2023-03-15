@@ -37,7 +37,9 @@ class _CityScreenState extends State<CityScreen> {
               ),
               Container(
                 padding: const EdgeInsets.all(20.0),
-                child: TextField(),
+                child: TextField(
+                  decoration: textFieldInputDecoration,
+                ),
               ),
               TextButton(
                 onPressed: () {},
