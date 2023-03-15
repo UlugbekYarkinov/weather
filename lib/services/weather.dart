@@ -1,4 +1,4 @@
-class Weather {
+class WeatherModal {
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';
