@@ -14,20 +14,14 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-  late double latitude;
-  late double longitude;
-
   Future<void> getLocationData() async {
     Location location = Location();
     await location.getCurrentLocation();
 
-    latitude = location.latitude;
-    longitude = location.longitude;
-
     NetworkHelper networkHelper = NetworkHelper(url:
         'https://api.openweathermap.org/data/2.5/weather?'
-        'lat=$latitude&'
-        'lon=$longitude&'
+        'lat=${location.latitude}&'
+        'lon=${location.longitude}&'
         'appid=$apiKey&'
         'units=metric'
     );
@@ -40,13 +34,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         locationWeather: weatherData,
       );
     }));
-
-    // int condition = weatherData['weather'][0]['id'];
-    // double temperature = weatherData['main']['temp'];
-    // String cityName = weatherData['name'];
   }
-
-
 
   @override
   void initState() {
