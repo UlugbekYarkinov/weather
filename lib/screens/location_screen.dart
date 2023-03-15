@@ -29,6 +29,7 @@ class _LocationScreenState extends State<LocationScreen> {
         temperature = 0;
         weatherIcon = 'Error';
         weatherMessage = 'Unable to get weather data';
+        cityName = 'nowhere';
         return;
       }
       temperature = (weatherData['main']['temp']).toInt();
@@ -77,11 +78,15 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const CityScreen())
                       );
+                      if(typedName != null) {
+                        var weatherData = await weatherModal.getCityWeather(typedName);
+                        updateUI(weatherData);
+                      }
                     },
                     child: const Icon(
                       Icons.location_city,
