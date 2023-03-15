@@ -14,7 +14,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   Future<void> getLocationData() async {
 
-    var weatherData = await WeatherModal().getCurrentLocation();
+    dynamic weatherData = await WeatherModal().getCurrentLocation();
 
     if(!mounted) return;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
